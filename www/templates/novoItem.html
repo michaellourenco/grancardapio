@@ -1,0 +1,20 @@
+<ion-view view-title="{{categoria.titulo}}">
+  <ion-content>
+		<h2>Novo Produto</h2>
+		<form name="itemForm">
+						<label class="item item-input" >
+				<input type="text" type="text" ng-model="item.ordem" name="ordem" placeholder="ordem"/> </label>			
+						<label class="item item-input" >
+				<input type="text" type="text" ng-model="item.valor" name="valor" placeholder="valor"/> </label>					
+						<label class="item item-input" >
+				<input type="text" type="text" ng-model="item.titulo" name="titulo" placeholder="titulo"/> </label>
+						<label class="item item-input" >
+				<input type="text" type="text" ng-model="item.descricao" name="descricao" placeholder="descricao"/> </label>
+
+		</form>
+		    <button class="button button-balanced" ng-click="addLine(item)">Add a line</button>
+		<button class="button button-balanced" ng-click="adicionarItem(item)">salvar</button>
+  </ion-content>
+</ion-view>
+
+

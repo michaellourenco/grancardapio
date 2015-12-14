@@ -1,0 +1,39 @@
+
+		<h3>{{app}}</h3>
+
+		<form name="cardapioForm">
+			<input class="form-control" type="text" ng-model="cardapio.id" name="id" placeholder="Identificador"/>
+			<input class="form-control" type="text" ng-model="cardapio.ordem" name="ordem" placeholder="ordem"/>			
+			<input class="form-control" type="text" ng-model="cardapio.titulo" name="titulo" placeholder="titulo" ng-required="true" ng-minlength="10"/>
+			<input class="form-control" type="text" ng-model="cardapio.namespace" name="namespace" placeholder="namespace"/>
+			<input class="form-control" type="text" ng-model="cardapio.descricao" name="descricao" placeholder="descricao"/>
+			<input class="form-control" type="text" ng-model="cardapio.chamada" name="chamada" placeholder="chamada"/>
+			<input class="form-control" type="text" ng-model="cardapio.diferenciais" name="diferenciais" placeholder="diferenciais"/>
+			<input class="form-control" type="text" ng-model="cardapio.cidade" name="cidade" placeholder="cidade"/>
+			<input class="form-control" type="text" ng-model="cardapio.logradouro" name="site" placeholder="logradouro"/>
+			<input class="form-control" type="text" ng-model="cardapio.horario" name="horario" placeholder="horario"/>
+			<input class="form-control" type="text" ng-model="cardapio.cep" name="site" placeholder="cep"/>
+			<input class="form-control" type="text" ng-model="cardapio.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
+			<input class="form-control" type="text" ng-model="cardapio.site" name="site" placeholder="site"/>
+			<input class="form-control" type="text" ng-model="cardapio.pagamento" name="pagamento" placeholder="formas de pagamento"/>
+			<select class="form-control" ng-model="cardapio.categoria" ng-options="categoria.nome + ' ( ' + (categoria.preco | currency) + ' )' for categoria in categorias | orderBy:'nome'">
+				<option value="">Selecione uma categoria</option>
+			</select>
+		</form>
+
+		<div ng-show="cardapioForm.titulo.$dirty" ng-messages="cardapioForm.titulo.$error">
+			<div ng-message="required" class="alert alert-danger">
+				Por favor, preencha o campo nome!
+			</div>
+			<div ng-message="minlength" class="alert alert-danger">
+				O campo nome deve ter no mínimo 10 caracteres.
+			</div>
+		</div>
+
+		<div ng-show="cardapioForm.telefone.$error.required && cardapioForm.telefone.$dirty" class="alert alert-danger">
+			Por favor, preencha o campo telefone!
+		</div>
+		<div ng-show="cardapioForm.telefone.$error.pattern" class="alert alert-danger">
+			O campo telefone deve ter o formato DDDDD-DDDD.
+		</div>
+		<button class="btn btn-primary btn-block" ng-click="adicionarCardapio(cardapio)" ng-disabled="cardapioForm.$invalid">Adicionar cardapio</button>

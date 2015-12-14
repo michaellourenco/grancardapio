@@ -1,0 +1,31 @@
+	<div class="jumbotron">
+		<h3>{{app}}</h3>
+		{{message}}
+		<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
+		<a class="btn btn-primary btn-block" href="#/novocardapio">Adicionar cardapio</a>
+		<table ng-show="cardapios.length > 0" class="table table-striped">
+			<tr>
+				<th></th>
+				<th>Id</th>
+				<th><a href="" ng-click="ordenarPor('titulo')">Titulo</a></th>
+				<th><a href="" ng-click="ordenarPor('telefone')">Telefone<a/></th>
+				<th>Categoria</th>
+				<th>Data</th>
+				<th>Editar</th>
+			</tr>
+			<tr ng-class="{'selecionado negrito': cardapio.selecionado}" ng-repeat="cardapio in cardapios | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+				<td><input type="checkbox" ng-model="cardapio.selecionado"/></td>
+				<td>{{cardapio.id = cardapios.indexOf(cardapio)}}</td>
+				<td><a href="#/admcardapio/{{cardapio.id}}">{{cardapio.titulo}}</a></td>
+				<td>{{cardapio.telefone}}</td>
+				<td>{{cardapio.categoria.nome}}</td>
+				<td><input type="radio" ng-model="selectedItem"/></td>
+				<!--<td><button class="btn btn-primary btn-block" ng-model="selectedItem" ng-click="editarcardapio(cardapio)">editar</button></td>-->
+				<td>    
+    </td>
+			</tr>
+		</table>
+
+		<button class="btn btn-danger btn-block" ng-click="apagarCardapios(cardapios)" ng-if="iscardapioSelecionado(cardapios)">Apagar cardapios</button>
+
+	</div>

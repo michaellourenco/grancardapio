@@ -1,0 +1,51 @@
+<ion-view view-title="Cardapio">
+  <ion-content>
+		
+		
+		<form name="cardapioEdit">
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.ordem" name="ordem" placeholder="ordem"/>			
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.titulo" name="titulo" placeholder="titulo" ng-required="true" ng-minlength="10"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.namespace" name="namespace" placeholder="namespace"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.descricao" name="descricao" placeholder="descricao"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.chamada" name="chamada" placeholder="chamada"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.diferencial" name="diferencial" placeholder="diferencial"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.cidade" name="cidade" placeholder="cidade"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.logradouro" name="site" placeholder="logradouro"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.horario" name="horario" placeholder="horario"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.cep" name="site" placeholder="cep"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.infoline" name="infoline" placeholder="infoline"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.site" name="site" placeholder="site"/>
+			</label>
+			<label class="item item-input" >
+			 <input type="text" ng-model="cardapio.pagamento" name="pagamento" placeholder="formas de pagamento"/>
+			</label>
+		</form>
+				<button class="button button-balanced" ng-click="editarCardapio(cardapio)">Editar cardapio</button>
+			</div>
+  </ion-content>
+</ion-view>
+
+

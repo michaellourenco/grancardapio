@@ -1,0 +1,13 @@
+<ion-view view-title="Cardapios">
+  <ion-content>
+
+  <a class="button button-positive" href="#/app/novocardapio"><i class="icon ion-plus"></i> cardápio</a>
+    <ion-list>
+      <ion-item ng-repeat="cardapio in cardapios" href="#/app/cardapio/{{cardapio.namespace}}">
+        {{cardapio.titulo}}<br />
+        {{cardapio.cidade}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+

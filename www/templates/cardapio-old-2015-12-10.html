@@ -1,0 +1,135 @@
+<ion-view view-title="{{cardapio.titulo}}">
+  <ion-content>
+<a class="button button-positive" href="#/app/novacategoria/{{cardapio.namespace}}"><i class="icon ion-plus"></i>Categoria</a>
+	    
+	    <input type="file" nv-file-select="" uploader="uploader" multiple />
+
+        <h2>The queue. Length: {{ uploader.queue.length }}</h2>
+        <ul>
+            <li ng-repeat="item in uploader.queue">
+                <div>Name: {{ item.file.name }}</div>
+                <div>Size: {{ item.file.size/1024/1024|number:2 }} Mb</div>
+                <div ng-show="uploader.isHTML5">
+                    Progress: {{ item.progress }}
+                    <div class="item-progress-box">
+                        <div class="item-progress" ng-style="{ 'width': item.progress + '%' }"></div>
+                    </div>
+                </div>
+                <div ng-if="controller.isImage(item._file)">
+                    Thumbnail (only images):
+                        <!-- Image preview -->
+                        <!--auto height-->
+                        <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                        <!--auto width-->
+                        <div ng-thumb="{ file: item._file, height: 100 }"></div>
+                        <!--fixed width and height -->
+                        <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                </div>
+                <div>
+                    <button ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">Upload</button>
+                    <button ng-click="item.cancel()" ng-disabled="!item.isUploading">Cancel</button>
+                    <button ng-click="item.remove()">Remove</button>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <div>
+                Total progress: {{ uploader.progress }}
+                <div class="total-progress-box">
+                    <div class="total-progress" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                </div>
+            </div>
+            <button ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">Upload all</button>
+            <button ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">Cancel all</button>
+            <button ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">Remove all</button>
+        </div>	
+        {{cardapio}}
+        <img ng-src="http://www.guiadodia.com.br/uploads/{{cardapio.logo}}" alt="logo" height="150"/>
+
+		<form class="list" name="cardapioEdit">
+
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Ordem</span>
+			 <input type="text" ng-model="cardapio.ordem" name="ordem" placeholder="ordem"/>			
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Título</span>
+			 <input type="text" ng-model="cardapio.titulo" name="titulo" placeholder="titulo" ng-required="true"/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Namespace</span>
+			 <input type="text" ng-model="cardapio.namespace" name="namespace" placeholder="namespace" disabled/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Descrição</span>
+			 <input type="text" ng-model="cardapio.descricao" name="descricao" placeholder="descricao"/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Chamada</span>
+			 <input type="text" ng-model="cardapio.chamada" name="chamada" placeholder="chamada"/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Diferencial</span>
+			 <input type="text" ng-model="cardapio.diferencial" name="diferencial" placeholder="diferencial"/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Cidade</span>
+			 <input type="text" ng-model="cardapio.cidade" name="cidade" placeholder="cidade"/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Logradouro</span>
+			 <input type="text" ng-model="cardapio.logradouro" name="site" placeholder="logradouro"/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Horário</span>
+			 <input type="text" ng-model="cardapio.horario" name="horario" placeholder="horario"/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">CEP</span>
+			 <input type="text" ng-model="cardapio.cep" name="site" placeholder="cep"/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Infoline</span>
+			 <input type="text" ng-model="cardapio.infoline" name="infoline" placeholder="infoline"/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Site</span>
+			 <input type="text" ng-model="cardapio.site" name="site" placeholder="site"/>
+			</label>
+			<label class="item item-input item-floating-label">
+    <span class="input-label">Formas de pagamento</span>
+			 <input type="text" ng-model="cardapio.pagamento" name="pagamento" placeholder="formas de pagamento"/>
+			</label>
+			<button class="button button-balanced" ng-click="editarCardapio(cardapio)">salvar</button>
+		</form>
+
+		<ion-list>
+			<ion-item ng-class="{'selecionado negrito': cardapio.selecionado}" ng-repeat="(indiceCat, cat) in cardapio.categorias" class="item-button-right">
+				{{indiceCategoria = cardapio.categorias.indexOf(cat)}} - {{cat.titulo}}
+				<div class="buttons">
+					<a class="button button-light" href="#/app/editarcategoria/{{cardapio.namespace}}/{{indiceCategoria}}"><i class="icon ion-edit"></i></a>	
+					<button class="button button-light" ng-click="apagarCategoria(indiceCategoria)"><i class="icon ion-trash-b"></i></button>	
+					<a class="button button-light" href="#/app/novoitem/{{cardapio.namespace}}/{{indiceCategoria}}"><i class="icon ion-plus"></i> produto</a>			
+				</div>
+				<br/><br/>
+
+				<ion-list>
+					<ion-item  ng-repeat="item in cat.itens | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao" class="item-button-right item-thumbnail-left stable-bg ink ink-dark">
+        				<img ng-src="http://www.guiadodia.com.br/uploads/{{item.imagem}}" alt="imagem" height="150" />
+							<p>{{item.ordem}} - {{item.titulo}}</p>
+							<p>{{item.descricao}}</p>
+							<div class="buttons">
+								<div class="button-bar">
+								<a class="button button-light" href="#/app/editaritem/{{cardapio.namespace}}/{{indiceCat}}/{{$index}}"><i class="icon ion-edit"></i></a>	
+								<button class="button button-light" ng-click="apagarItem($index,indiceCat)"><i class="icon ion-trash-b"></i></button>
+							 </div>
+						</div>
+					</ion-item>
+				</ion-list>
+			</ion-item>
+		</ion-list>
+
+
+  </ion-content>
+</ion-view>
+

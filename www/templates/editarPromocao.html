@@ -1,0 +1,24 @@
+
+		
+		
+		<form name="cardapioEdit">
+			<input class="form-control" type="text" ng-model="cardapio.id" name="id" placeholder="Identificador"/>
+			<input class="form-control" type="text" ng-model="cardapio.ordem" name="ordem" placeholder="ordem"/>			
+			<input class="form-control" type="text" ng-model="cardapio.titulo" name="titulo" placeholder="titulo" ng-required="true" ng-minlength="10"/>
+			<input class="form-control" type="text" ng-model="cardapio.cardapio.namespace" name="namespace" placeholder="namespace"/>
+			<input class="form-control" type="text" ng-model="cardapio.descricao" name="descricao" placeholder="descricao"/>
+			<input class="form-control" type="text" ng-model="cardapio.chamada" name="chamada" placeholder="chamada"/>
+			<input class="form-control" type="text" ng-model="cardapio.diferencial" name="diferenciais" placeholder="diferenciais"/>
+			<input class="form-control" type="text" ng-model="cardapio.cidade" name="cidade" placeholder="cidade"/>
+			<input class="form-control" type="text" ng-model="cardapio.logradouro" name="site" placeholder="logradouro"/>
+			<input class="form-control" type="text" ng-model="cardapio.horario" name="horario" placeholder="horario"/>
+			<input class="form-control" type="text" ng-model="cardapio.cep" name="site" placeholder="cep"/>
+			<input class="form-control" type="text" ng-model="cardapio.infoline" name="telefone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
+			<input class="form-control" type="text" ng-model="cardapio.site" name="site" placeholder="site"/>
+			<input class="form-control" type="text" ng-model="cardapio.pagamento" name="pagamento" placeholder="formas de pagamento"/>
+			<select class="form-control" ng-model="cardapio.categoria" ng-options="categoria.nome + ' ( ' + (categoria.preco | currency) + ' )' for categoria in categorias | orderBy:'nome'">
+				<option value="">Selecione uma categoria</option>
+			</select>
+		</form>
+				<button class="btn btn-primary btn-block" ng-click="editarCardapio(cardapio)">Editar cardapio</button>
+			</div>

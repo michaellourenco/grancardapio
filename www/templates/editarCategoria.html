@@ -1,0 +1,23 @@
+<ion-view view-title="{{cardapio.titulo}}">
+  <ion-content>
+  	<h2>Nova Categoria</h2>
+  	<h3>{{categoria}}</h3>
+		<form class="list" name="categoriaForm">
+		
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Ordem</span>
+			<input type="text" ng-model="categoria.ordem" name="ordem" placeholder="ordem"/>
+		</label>
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Titulo</span>		
+			<input type="text" ng-model="categoria.titulo" name="titulo" placeholder="titulo"/>
+		</label>
+
+
+		</form>
+
+		    <button class="button button-balanced" ng-click="addLine(categoria)">Add a line</button>
+		<button class="button button-balanced" ng-click="editarCategoria(categoria)">salvar</button>
+  </ion-content>
+</ion-view>
+

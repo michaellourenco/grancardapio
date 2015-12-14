@@ -1,0 +1,60 @@
+
+
+		<h2>{{cardapio.titulo}}</h2>
+<a class="btn btn-primary btn-block" href="#/novacategoria/{{cardapio.namespace}}">Nova Categoria</a>
+		
+		<form name="cardapioEdit">
+			<input class="form-control" type="text" ng-model="cardapio.id" name="id" placeholder="Identificador"/>
+			<input class="form-control" type="text" ng-model="cardapio.ordem" name="ordem" placeholder="ordem"/>			
+			<input class="form-control" type="text" ng-model="cardapio.titulo" name="titulo" placeholder="titulo" ng-required="true" ng-minlength="10"/>
+			<input class="form-control" type="text" ng-model="cardapio.namespace" name="namespace" placeholder="namespace"/>
+			<input class="form-control" type="text" ng-model="cardapio.descricao" name="descricao" placeholder="descricao"/>
+			<input class="form-control" type="text" ng-model="cardapio.chamada" name="chamada" placeholder="chamada"/>
+			<input class="form-control" type="text" ng-model="cardapio.diferencial" name="diferenciais" placeholder="diferenciais"/>
+			<input class="form-control" type="text" ng-model="cardapio.cidade" name="cidade" placeholder="cidade"/>
+			<input class="form-control" type="text" ng-model="cardapio.logradouro" name="site" placeholder="logradouro"/>
+			<input class="form-control" type="text" ng-model="cardapio.horario" name="horario" placeholder="horario"/>
+			<input class="form-control" type="text" ng-model="cardapio.cep" name="site" placeholder="cep"/>
+			<input class="form-control" type="text" ng-model="cardapio.infoline" name="infoline" placeholder="Telefone"/>
+			<input class="form-control" type="text" ng-model="cardapio.site" name="site" placeholder="site"/>
+			<input class="form-control" type="text" ng-model="cardapio.pagamento" name="pagamento" placeholder="formas de pagamento"/>
+
+		</form>
+				<button class="btn btn-primary btn-block" ng-click="editarCardapio(cardapio)">Editar cardapio</button>
+			
+		<div ng-class="{'selecionado negrito': cardapio.selecionado}" ng-repeat="cat in cardapio.categorias">
+			<hr/>
+			<table class="table">
+				<tr>
+					<td>{{indiceCategoria = cardapio.categorias.indexOf(cat)}}</td>
+					<td><h4>{{cat.titulo}}<h4></td>
+					<td><button class="btn btn-primary btn-block" ng-click="editarCategoria(cat)">editar</button></td>
+					<td><button class="btn btn-primary btn-block" ng-click="apagarCategoria(indiceCategoria)">apagar</button></td>
+				</tr>
+			</table>
+
+
+			
+			<a class="btn btn-primary btn-block" href="#/novoitem/{{cardapio.namespace}}/{{indiceCategoria}}">novo item</a>
+
+		<table class="table table-striped">
+			<tr>
+				<th></th>
+				<th>id</th>
+				<th><a href="" ng-click="ordenarPor('ordem')">Ordem<a/></th>
+				<th><a href="" ng-click="ordenarPor('titulo')">Titulo</a></th>
+
+				<th></th>
+				<th></td>
+			</tr>
+			<tr ng-class="{'selecionado negrito': item.selecionado}" ng-repeat="item in cat.itens | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+				<td><input type="checkbox" ng-model="item.selecionado"/></td>
+				<td>{{indiceItem = cat.itens.indexOf(item)}}</td>
+				<td><a href="#/admcardapio/{{cardapio.namespace}}">{{item.ordem}}</a></td>
+				<td><a href="#/admcardapio/{{cardapio.namespace}}">{{item.titulo}}</a></td>
+				<td><button class="btn btn-primary btn-block" ng-click="editarItem(item)">editar</button></td>
+				<td><button class="btn btn-primary btn-block" ng-click="apagarItem(indiceItem,indiceCategoria)">apagar</button></td>
+			</tr>
+		</table>
+
+		</div>
